@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 /**
  * Classe de gerenciamento da tela de login.
@@ -25,17 +26,23 @@ public class LoginView extends JFrame {
     private final short WIDTH = 800;
     private final short HEIGHT = 600;
     
-    private final Font CALIBRI_22 = new Font("Calibri", Font.BOLD, 22);
+    private final Font CALIBRI_32 = new Font("Calibri", Font.BOLD, 32);
+    private final Font CALIBRI_40 = new Font("Calibri", Font.BOLD, 40);
     
-    private URL iconTitleUrl = LoginView.class.getResource("/imgs/icon_title.png");
+    private final Color DARK_GRAY = new Color(75,75,75);
     
-    private ImageIcon iconTitle = new ImageIcon(iconTitleUrl);
+    private final URL URL_ICON_TITLE = LoginView.class.getResource("/imgs/icon_title.png");
+    
+    private ImageIcon iconTitle = new ImageIcon(URL_ICON_TITLE);
     
     private GridBagConstraints gbc = new GridBagConstraints();
     
     private JPanel background;
+
+    private RoundedPanel pnTitle;
     
     private JLabel lbTitle;
+    private JLabel lbName;
     
     private ResolutionLabel lbIconTitle;
     
@@ -59,12 +66,26 @@ public class LoginView extends JFrame {
     private void customComponents() {
         background = new JPanel(new GridBagLayout());
         background.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        background.setBackground(Color.LIGHT_GRAY);
+        background.setBackground(DARK_GRAY);
+        
+        pnTitle = new RoundedPanel(
+                new Dimension((int)(WIDTH * 0.925), (int)(HEIGHT * 0.2)),
+                Color.WHITE,
+                15
+        );
+        pnTitle.setBackground(Color.WHITE);
         
         lbTitle = new JLabel();
-        lbTitle.setFont(CALIBRI_22);
-        lbTitle.setForeground(Color.BLACK);
+        lbTitle.setFont(CALIBRI_40);
+        lbTitle.setText("CRONOGRAMA DE PROJETOS");
+        lbTitle.setForeground(Color.WHITE);
         
+        lbName = new JLabel();
+        lbName.setFont(CALIBRI_32);
+        lbName.setText("NOME DE USUARIO");
+        lbName.setForeground(Color.WHITE);
+        lbName.setHorizontalAlignment(SwingConstants.CENTER);
+       
         lbIconTitle = new ResolutionLabel();
         lbIconTitle.setIcon(iconTitle);
     }
@@ -76,16 +97,26 @@ public class LoginView extends JFrame {
         
         insertOnBackground();
     }
+    /**
+     *  Método de inserção de componentes no background.
+     */
     private void insertOnBackground() {
-        restartGbc();
+        resetGbc();
         
-        background.add(lbIconTitle, gbc);
+        background.add(pnTitle, gbc);
         
-        gbc.gridx = 1;
-        
-        background.add(lbTitle, gbc);
     }
-    private void restartGbc() {
+    /** 
+     *  Método de inserção de componentes no painel do título.
+     */
+    private void insertOnPnTitle() {
+        resetGbc();
+        
+    }
+    /**
+     *  Método para reiniciar as configurações do GridBagConstraints.
+     */
+    private void resetGbc() {
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.gridx = 0;
