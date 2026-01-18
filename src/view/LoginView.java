@@ -30,6 +30,7 @@ public class LoginView extends JFrame {
     private final Font CALIBRI_40 = new Font("Calibri", Font.BOLD, 40);
     
     private final Color DARK_GRAY = new Color(75,75,75);
+    private final Color DARK_RED = new Color(255,50,95);
     
     private final URL URL_ICON_TITLE = LoginView.class.getResource("/imgs/icon_title.png");
     
@@ -69,16 +70,16 @@ public class LoginView extends JFrame {
         background.setBackground(DARK_GRAY);
         
         pnTitle = new RoundedPanel(
-                new Dimension((int)(WIDTH * 0.925), (int)(HEIGHT * 0.2)),
+                new Dimension((int)(WIDTH * 0.925), (int)(HEIGHT * 0.3)),
                 Color.WHITE,
-                15
+                50
         );
         pnTitle.setBackground(Color.WHITE);
         
         lbTitle = new JLabel();
         lbTitle.setFont(CALIBRI_40);
         lbTitle.setText("CRONOGRAMA DE PROJETOS");
-        lbTitle.setForeground(Color.WHITE);
+        lbTitle.setForeground(DARK_RED);
         
         lbName = new JLabel();
         lbName.setFont(CALIBRI_32);
@@ -105,12 +106,21 @@ public class LoginView extends JFrame {
         
         background.add(pnTitle, gbc);
         
+        insertOnPnTitle();
+        
     }
     /** 
      *  Método de inserção de componentes no painel do título.
      */
     private void insertOnPnTitle() {
         resetGbc();
+        
+        pnTitle.add(lbIconTitle, gbc);
+        
+        gbc.gridx = 1;
+        gbc.insets = new Insets(0, 20, 0, 0);
+        
+        pnTitle.add(lbTitle, gbc);
         
     }
     /**
