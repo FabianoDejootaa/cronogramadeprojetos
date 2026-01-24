@@ -35,8 +35,10 @@ public class LoginView extends JFrame {
     private final Color DARK_RED = new Color(255,71,90);
     
     private final URL URL_ICON_TITLE = LoginView.class.getResource("/imgs/icon_title.png");
+    private final URL URL_ICON_BTN_LOGIN = LoginView.class.getResource("/imgs/icon_btn_login.png");
     
     private ImageIcon iconTitle = new ImageIcon(URL_ICON_TITLE);
+    private ImageIcon iconBtnLogin = new ImageIcon(URL_ICON_BTN_LOGIN);
     
     private GridBagConstraints gbc = new GridBagConstraints();
     
@@ -66,6 +68,7 @@ public class LoginView extends JFrame {
         this.setSize(WIDTH, HEIGHT);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
         
         customComponents();
         insertComponents();
@@ -140,6 +143,9 @@ public class LoginView extends JFrame {
         );
         btnLogin.setFont(ALMENDRA_28);
         btnLogin.setText("LOGIN");
+        btnLogin.setIcon(iconBtnLogin);
+        
+        this.getRootPane().setDefaultButton(btnLogin);
     }
     /**
      *  Método de inserção de componentes na UI.
@@ -219,8 +225,7 @@ public class LoginView extends JFrame {
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
         
-        pnMain.add(btnLogin, gbc);
-        
+        pnMain.add(btnLogin, gbc);   
     }
     /**
      *  Método para reiniciar as configurações do GridBagConstraints.
