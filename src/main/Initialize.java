@@ -3,6 +3,7 @@ package main;
 import view.LoginView;
 
 /**
+ * Louvado seja o Senhor Jesus Cristo, salvador e consolador de nossas almas!
  * Classe de inicialização do sistema.
  * @author Fabiano Aparecido Mariano de Oliveira.
  * @since 17/01/2026.

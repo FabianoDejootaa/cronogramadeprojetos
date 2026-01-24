@@ -10,6 +10,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 
 /**
+ * Louvado seja o Senhor Jesus Cristo, salvador e consolador de nossas almas!
  *  Classe de renderização gráfica do JPanel.
  *  @author Fabiano Aparecido Mariano de Oliveira.
  *  @since 18/01/2026.

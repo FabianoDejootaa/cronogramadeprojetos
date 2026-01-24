@@ -7,6 +7,7 @@ import java.awt.RenderingHints;
 import javax.swing.JLabel;
 
 /**
+ *  Louvado seja o Senhor Jesus Cristo, salvador e consolador de nossas almas!
  *  Classe de reconstrução do JLabel.
  *  Reconstrução da renderização de imagens com ativação de antiserrilhado.
  *  @author Fabiano Aparecido Mariano de Oliveira.
