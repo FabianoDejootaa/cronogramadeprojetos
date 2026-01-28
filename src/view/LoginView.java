@@ -13,7 +13,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
+import model.dao.UserDao;
+import model.vo.User;
 
 /**
  * Louvado seja o Senhor Jesus Cristo, salvador e consolador de nossas almas!
@@ -59,6 +63,10 @@ public class LoginView extends JFrame {
     private RoundedPassField tfPass;
     
     private RoundedButton btnLogin;
+    
+    private User user;
+    
+    private UserDao dao = new UserDao();
     
     /**
      *  Construtor da classe.
@@ -144,6 +152,7 @@ public class LoginView extends JFrame {
         btnLogin.setFont(ALMENDRA_28);
         btnLogin.setText("LOGIN");
         btnLogin.setIcon(iconBtnLogin);
+        btnLogin.addActionListener(e -> btnEvent());
         
         this.getRootPane().setDefaultButton(btnLogin);
     }
@@ -221,6 +230,7 @@ public class LoginView extends JFrame {
         pnMain.add(tfPass, gbc);
         
         gbc.gridy = 4;
+        gbc.gridwidth = 2;
         gbc.insets = new Insets(15, 0, 0, 0);
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -240,5 +250,22 @@ public class LoginView extends JFrame {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
+    }
+    private void btnEvent() {
+        String nameUser = tfName.getText();
+        String passUser = String.valueOf(tfPass.getPassword());
+        
+        if(!nameUser.isEmpty() && !passUser.isEmpty()) {
+            
+            user = (User) dao.query("users", nameUser, passUser);
+
+            if(user != null) {
+                JOptionPane.showMessageDialog(null, "LOGIN FEITO COM SUCESSO!", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "USUÁRIO INVÁLIDO!", "AVISO", JOptionPane.ERROR_MESSAGE);
+            }    
+        } else {
+            JOptionPane.showMessageDialog(null, "PREENCHA OS CAMPOS VAZIOS!", "AVISO", JOptionPane.WARNING_MESSAGE);
+        }
     }
 }

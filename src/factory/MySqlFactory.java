@@ -15,16 +15,16 @@ import java.sql.SQLException;
  */
 public class MySqlFactory {
     
-    private final String URL = "jdbc:mysql://localhost:3306/database_center";
-    private final String USER = "root";
-    private final String PASS = "root";
-    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/cronograma_projetos";
+    private static final String USER = "root";
+    private static final String PASS = "root";
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     
     /**
      *  Método de obtenção de conexão.
      * @return Gerenciador do driver do gerenciador de conexão.
      */
-    public Connection getConnection() {
+    public static Connection getConnection() {
         try {
             Class.forName(DRIVER);
             return DriverManager.getConnection(URL, USER, PASS);
@@ -39,10 +39,10 @@ public class MySqlFactory {
      *  Método de fechamento de conexão.
      * @param conn Manipulador da conexão.
      */
-    public void closeConnection(Connection conn) {
+    public static void closeConnection(ResultSet rs) {
         try {
-            if(conn != null) {
-                conn.close();
+            if(rs != null) {
+                rs.close();
             }
         } catch(SQLException ex) {
             System.out.println("Error:\n\n" + ex.getMessage());
@@ -53,8 +53,8 @@ public class MySqlFactory {
      * @param conn Manipulador de conexão.
      * @param stm  Manipulador de conteúdo de conexão.
      */
-    public void closeConnection(Connection conn, PreparedStatement stm) {
-        closeConnection(conn);
+    public static void closeConnection(ResultSet rs, PreparedStatement stm) {
+        closeConnection(rs);
         try {
             if(stm != null) {
                 stm.close();
@@ -69,11 +69,11 @@ public class MySqlFactory {
      * @param stm Manipulador de conteúdo de conexão.
      * @param rs Manipulador de resultados de consultas.
      */
-    public void closeConnection(Connection conn, PreparedStatement stm, ResultSet rs) {
-        closeConnection(conn, stm);
+    public static void closeConnection(ResultSet rs, PreparedStatement stm, Connection conn) {
+        closeConnection(rs, stm);
         try {
-            if(rs != null) {
-                rs.close();
+            if(conn != null) {
+                conn.close();
             }
         } catch(SQLException ex) {
             System.out.println("Error:\n\n" + ex.getMessage());

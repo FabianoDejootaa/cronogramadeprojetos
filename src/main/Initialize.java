@@ -15,7 +15,6 @@ public class Initialize {
      *  @param args Argumentos do método main.
      */
     public static void main(String args[]) {
-        
         new Thread(() -> {
             final int MB = 1024 * 1024;
             
